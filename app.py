@@ -13,7 +13,7 @@ app = Flask(__name__)
 CORS(app)
 
 try:
-    with open('new_fertilizer_classification_model.pkl', 'rb') as f:
+    with open('model/new_fertilizer_classification_model.pkl', 'rb') as f:
         model = pickle.load(f)
     logger.info("Model loaded successfully")
 except FileNotFoundError:
@@ -24,7 +24,7 @@ except Exception as e:
     model = None
 
 try:
-    with open('labelEncoder_01.pkl', 'rb') as f: 
+    with open('model/labelEncoder_01.pkl', 'rb') as f: 
         label_encoder = pickle.load(f)
     logger.info("Label Encoder  loaded successfully")
 except FileNotFoundError:
