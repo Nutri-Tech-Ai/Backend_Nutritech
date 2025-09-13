@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fertilizer Prediction System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🌾 Fertilizer Prediction System</h1>
+            <p>AI-powered fertilizer recommendation for optimal crop growth</p>
+        </header>
+
+        <main class="main-content">
+            <form id="prediction-form" class="prediction-form">
+                <div class="form-group">
+                    <label for="District_Name">District:</label>
+                    <select name="District_Name" id="District_Name">
+                        <option value="">Select your district</option>
+                        {% for district in districts %}
+                            <option value="{{ district }}">{{ district }}</option>
+                        {% endfor %} 
+                    </select>
+                </div>
+                <!-- Form fields here -->
+                <div class="form-group">
+                    <label for="Nitrogen">Nitrogen (N):</label>
+                    <input type="number" id="Nitrogen" name="Nitrogen" required>
+                </div>
+                <div class="form-group">
+                    <label for="Phosphorus">Phosphorus (P):</label>
+                    <input type="number" id="Phosphorus" name="Phosphorus" required>
+                </div>
+                <div class="form-group">
+                    <label for="Potassium">Potassium (K):</label>
+                    <input type="number" id="Potassium" name="Potassium" required>
+                </div>
+                <div class="form-group">
+                    <label for="Temperature">Temperature (°C):</label>
+                    <input type="number" id="Temperature" name="Temperature" required>
+                </div>
+                <div class="form-group">
+                    <label for="pH">pH Level:</label>
+                    <input type="number" id="pH" name="pH" step="0.1" required>
+                </div>
+                <div class="form-group">
+                    <label for="Rainfall">Rainfall (mm):</label>
+                    <input type="number" id="Rainfall" name="Rainfall" required>
+                </div>
+                <div class="form-group">
+                    <label for="Crop">Crop Type:</label>
+                    <select id="Crop" name="Crop" required>
+                        <option value="">Select Crop</option>
+                        <option value="Rice">Rice</option>
+                        <option value="Wheat">Wheat</option>
+                        <option value="Maize">Maize</option>
+                        <option value="Sugarcane">Sugarcane</option>
+                        <!-- Add more crops as needed -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="Soil_color">Soil Type:</label>
+                    <select id="Soil_color" name="Soil_color" required>
+                        <option value="">Select Soil Type</option>
+                        <option value="Clay">Clay</option>
+                        <option value="Sandy">Sandy</option>
+                        <option value="Loamy">Loamy</option>
+                        <option value="Black">Black</option>
+                        <!-- Add more soil types as needed -->
+                    </select>
+                </div>
+                <!-- Add other form fields similarly -->
+                <div style=""></div>
+                <button type="button" id="fertilizerRecommender" class="btn-predict">
+                    🔮 Predict Fertilizer
+                </button>
+
+                <button type="button" id="cropRecommender" class="btn-predict">
+                    🌱 Predict Crop
+                </button>
+
+                <button type="button" id="yieldRecommender" class="btn-predict">
+                    🌾 Predict Yield
+                </button>
+            </form>
+
+            <div id="loading" class="loading" style="display: none;">
+                <div class="spinner"></div>
+                <p>Analyzing your data...</p>
+            </div> 
+            <div id="fertilizerResults" class="results" style="display: none;">
+                <!-- Fertilizer results will be populated by JavaScript -->
+                <div class="container-bar"></div>
+            </div>
+
+            <div id="cropResults" class="results" style="display: none;">
+                <!-- Crop results will be populated by JavaScript -->
+            </div>
+
+            <div id="yieldResults" class="results" style="display:none;">
+                <!-- Yield results will be populated by JavaScript -->
+            </div>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
